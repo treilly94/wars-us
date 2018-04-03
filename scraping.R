@@ -11,8 +11,9 @@ wars <- wiki_raw %>%
   html_table()
 
 # Define patterns for regex
-name_pattern <- "([\\s\\w'-]+)\\n"
+name_pattern <- "([\\s\\w'\\p{Pd}]+)\\n"
 date_pattern <- "([\\d–]+)"
+header <- TRUE
 
 for (war in wars) {
   
@@ -29,5 +30,7 @@ for (war in wars) {
   war <- war[, c("Name", "Start", "End")]
   
   # Write to csv
-  write.table(war, file = "wars.csv", sep = ",", row.names = FALSE, append = TRUE)
+  write.table(war, file = "wars.csv", sep = ",", col.names = header, row.names = FALSE, append = TRUE)
+  
+  header <- FALSE
 }
