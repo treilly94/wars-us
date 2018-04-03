@@ -10,7 +10,8 @@ wars$Name <- factor(wars$Name, levels = wars$Name[order(wars$Start)])
 g2 <- ggplot() +
   geom_segment(data = wars, aes(x = Start, xend = End, y = Name, yend = Name), size = 2) +
   xlab("Year") +
-  ylab("War")
+  ylab("War") +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
 
 g2
 
