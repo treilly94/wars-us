@@ -25,3 +25,6 @@ wars <- wars %>%
 
 # Drop extra columns
 wars <- wars[, c("Name", "Start", "End")]
+
+# Write to csv
+write.csv(wars, file = "wars.csv")
