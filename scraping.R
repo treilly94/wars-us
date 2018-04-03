@@ -27,4 +27,4 @@ wars <- wars %>%
 wars <- wars[, c("Name", "Start", "End")]
 
 # Write to csv
-write.csv(wars, file = "wars.csv")
+write.csv(wars, file = "wars.csv", row.names = FALSE)
