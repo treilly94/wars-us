@@ -19,6 +19,8 @@ for (war in wars) {
   
   # Extract names
   war$Name <- str_extract(war$Conflict, pattern = name_pattern)
+  # Remove trailing \n
+  war$Name <- str_sub(war$Name, end = -2)
   
   # Extract dates 
   war$Dates <- str_extract(war$Conflict, pattern = date_pattern)
