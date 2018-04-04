@@ -14,6 +14,7 @@ wars <- wiki_raw %>%
 name_pattern <- "([\\s\\w'\\p{Pd}]+)\\n"
 date_pattern <- "([\\d–]{4,9})"
 location_pattern <- "Location: ([:print:]+)\\n"
+result_pattern <- "(\\w+)"
 header <- TRUE
 
 
@@ -33,8 +34,11 @@ for (war in wars) {
   war <- war %>%
     separate(Dates, c("Start", "End"), "–")
   
+  # Extract Result
+  war$Result <- str_extract(war[["Result for the United States and/or its Allies"]], pattern = result_pattern)
+  
   # Drop extra columns
-  war <- war[, c("Name", "Location", "Start", "End")]
+  war <- war[, c("Name", "Location", "Start", "End", "Result")]
   
   # Write to csv
   write.table(war, file = "wars.csv", sep = ",", col.names = header, row.names = FALSE, append = TRUE)
