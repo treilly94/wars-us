@@ -21,12 +21,11 @@ for (war in wars) {
   
   # Extract names
   war$Name <- str_extract(war$Conflict, pattern = name_pattern)
-  # Remove trailing \n
-  war$Name <- str_sub(war$Name, end = -2)
+  war$Name <- str_sub(war$Name, end = -2) # Substring because str_extract doesnt capture groups
   
   # Extract Locations
   war$Location <- str_extract(war$Conflict, pattern = location_pattern)
-  war$Location <- str_sub(war$Location, start = 10, end = -2)
+  war$Location <- str_sub(war$Location, start = 11, end = -2) # Substring because str_extract doesnt capture groups
   
   # Extract dates 
   war$Dates <- str_extract(war$Conflict, pattern = date_pattern)
