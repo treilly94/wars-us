@@ -12,7 +12,7 @@ wars <- wiki_raw %>%
 
 # Define patterns for regex
 name_pattern <- "([\\s\\w'\\p{Pd}]+)\\n"
-date_pattern <- "([\\d–]+)"
+date_pattern <- "([\\d–]{4,9})"
 header <- TRUE
 
 for (war in wars) {
