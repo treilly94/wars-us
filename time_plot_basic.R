@@ -6,6 +6,12 @@ wars <- read.csv("wars.csv")
 # Order dataframe 
 wars$Name <- factor(wars$Name, levels = wars$Name[order(wars$Start)])
 
+# Fill end dates for 1 year wars
+wars$End[is.na(wars$End)] <- as.integer(wars$Start[is.na(wars$End)]) + 1
+
+# Fill end dates for ongoing wars
+wars$End[wars$Result=="Ongoing"] <- as.integer(format(Sys.Date(), "%Y"))
+
 # Create colour palet 
 pal <- c("#ff8000", "#0040ff", "#ff0000", "#ffff00", "#ff0080", "#993300", "#00cc00")
 
