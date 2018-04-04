@@ -14,7 +14,7 @@ wars <- wiki_raw %>%
 name_pattern <- "([\\s\\w'\\p{Pd}]+)\\n"
 date_pattern <- "([\\d–]{4,9})"
 location_pattern <- "Location: ([:print:]+)\\n"
-result_pattern <- "(\\w+)"
+result_pattern <- "([A-Z][a-z]+)"
 header <- TRUE
 
 
