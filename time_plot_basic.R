@@ -6,11 +6,15 @@ wars <- read.csv("wars.csv")
 # Order dataframe 
 wars$Name <- factor(wars$Name, levels = wars$Name[order(wars$Start)])
 
+# Create colour palet 
+pal <- c("#ff8000", "#0040ff", "#ff0000", "#ffff00", "#ff0080", "#993300", "#00cc00")
+
 # Create basic time plot
 timePlot <- ggplot() +
-  geom_segment(data = wars, aes(x = Start, xend = End, y = Name, yend = Name), size = 2) +
+  geom_segment(data = wars, aes(x = Start, xend = End, y = Name, yend = Name, color = Result), size = 2) +
   xlab("Year") +
   ggtitle("US Wars Over Time") +
+  scale_colour_manual(values = pal) +
   theme(axis.text.y = element_blank(), 
         axis.ticks.y = element_blank(),
         axis.title.y = element_blank())
