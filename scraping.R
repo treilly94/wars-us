@@ -13,7 +13,9 @@ wars <- wiki_raw %>%
 # Define patterns for regex
 name_pattern <- "([\\s\\w'\\p{Pd}]+)\\n"
 date_pattern <- "([\\d–]{4,9})"
+location_pattern <- "Location: ([:print:]+)\\n"
 header <- TRUE
+
 
 for (war in wars) {
   
@@ -22,6 +24,10 @@ for (war in wars) {
   # Remove trailing \n
   war$Name <- str_sub(war$Name, end = -2)
   
+  # Extract Locations
+  war$Location <- str_extract(war$Conflict, pattern = location_pattern)
+  war$Location <- str_sub(war$Location, start = 10, end = -2)
+  
   # Extract dates 
   war$Dates <- str_extract(war$Conflict, pattern = date_pattern)
   
@@ -29,7 +35,7 @@ for (war in wars) {
     separate(Dates, c("Start", "End"), "–")
   
   # Drop extra columns
-  war <- war[, c("Name", "Start", "End")]
+  war <- war[, c("Name", "Location", "Start", "End")]
   
   # Write to csv
   write.table(war, file = "wars.csv", sep = ",", col.names = header, row.names = FALSE, append = TRUE)
