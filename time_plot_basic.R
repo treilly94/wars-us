@@ -21,9 +21,12 @@ timePlot <- ggplot() +
   xlab("Year") +
   ggtitle("US Wars Over Time") +
   scale_colour_manual(values = pal) +
+  theme_bw() +
   theme(axis.text.y = element_blank(), 
         axis.ticks.y = element_blank(),
-        axis.title.y = element_blank())
+        axis.title.y = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.background = element_blank())
 
 timePlot
 
