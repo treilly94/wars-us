@@ -41,7 +41,7 @@ for (war in wars) {
   war <- war[, c("Name", "Location", "Start", "End", "Result")]
   
   # Write to csv
-  write.table(war, file = "wars.csv", sep = ",", col.names = header, row.names = FALSE, append = TRUE)
+  write.table(war, file = "./data/wars.csv", sep = ",", col.names = header, row.names = FALSE, append = TRUE)
   
   header <- FALSE
 }
